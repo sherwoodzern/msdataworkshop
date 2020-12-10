@@ -6,7 +6,6 @@ pipeline {
   }
   environment {
     DOCKER_REGISTRY = 'iad.ocir.io/oraclegilsonmel/msdataworkshop'
-  
   }
 
   stages {
