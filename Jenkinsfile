@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'Jenkinsslave'
+    }
+
+  }
   stages {
     stage('Build') {
       steps {
@@ -22,5 +27,8 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    DOCKER_REGISTRY = 'iad.ocir.io/oraclegilsonmel/msdataworkshop'
   }
 }
