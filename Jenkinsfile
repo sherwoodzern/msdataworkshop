@@ -6,7 +6,7 @@ pipeline {
   }
   environment {
     DOCKER_REGISTRY = 'iad.ocir.io/oraclegilsonmel/msdataworkshop'
-    PATH = '$PATH:/home/opc/maven/apache-maven-3.6.3/bin'
+  
   }
 
   stages {
