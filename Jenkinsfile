@@ -1,11 +1,11 @@
 pipeline {
   agent {
-    tools {
-      maven 'M3'
-    }
     node {
       label 'Jenkinsslave'
     }
+  }
+  tools {
+      maven 'M3'
   }
   environment {
     DOCKER_REGISTRY = 'iad.ocir.io/oraclegilsonmel/msdataworkshop'
