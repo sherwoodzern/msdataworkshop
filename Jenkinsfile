@@ -10,10 +10,13 @@ pipeline {
 
   stages {
     stage('Build') {
-      steps {
+      environment {
         env.PATH = "{tool 'M3'}/bin:${env.Path}"
         configFileProvider(
          [configFile(fileId: 'maven-global-settings', variable: 'MAVEN_SETTINGS')])
+      }
+      steps {
+        
         git url: 'https://github.com/sherwoodzern/msdataworkshop'
         sh 'cd frontend-helidon'
         sh 'SCRIPT_DIR=$(dirname $0)'
@@ -21,12 +24,12 @@ pipeline {
         sh 'IMAGE_VERSION=0.1'
         sh 'export IMAGE=${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}'
         withMaven {
+          maven: 'M3'
+          mavenSettingsConfig: 'MyGlobalSettings'
           sh "mvn install"
           sh "mvn package docker:build"
         }
-        
 
-       sh '''./build.sh'''
       }
     }
 
