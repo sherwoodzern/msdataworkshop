@@ -5,7 +5,6 @@ pipeline {
       env.PATH = "{tool 'M3'}/bin:${env.Path}"
       configFileProvider(
         [configFile(fileId: 'maven-global-settings', variable: 'MAVEN_SETTINGS')])
-      )
     }
   }
   environment {
