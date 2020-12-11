@@ -21,7 +21,7 @@ pipeline {
         withMaven (
           maven: 'M3',
           mavenLocalRepo: '.repository',
-          mavenSettingsConfig: 'MyGlobalSettings'
+          mavenSettingsConfig: 'global-settings-xml'
         )
         sh "mvn install"
         sh "mvn package docker:build"
