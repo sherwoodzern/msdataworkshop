@@ -2,9 +2,6 @@ pipeline {
   agent {
     node {
       label 'Jenkinsslave'
-      env.PATH = "{tool 'M3'}/bin:${env.Path}"
-      configFileProvider(
-        [configFile(fileId: 'maven-global-settings', variable: 'MAVEN_SETTINGS')])
     }
   }
   environment {
@@ -14,6 +11,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        env.PATH = "{tool 'M3'}/bin:${env.Path}"
+        configFileProvider(
+         [configFile(fileId: 'maven-global-settings', variable: 'MAVEN_SETTINGS')])
         git url: 'https://github.com/sherwoodzern/msdataworkshop'
         sh 'cd frontend-helidon'
         sh 'SCRIPT_DIR=$(dirname $0)'
