@@ -15,17 +15,17 @@ pipeline {
     stage('Build') {
       steps {
         
-        
-        sh 'cd frontend-helidon'
-        sh 'SCRIPT_DIR=$(dirname $0)'
-        sh 'IMAGE_NAME=frontend-helidon'
-        sh 'IMAGE_VERSION=0.1'
-        sh 'export IMAGE=${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}'
+        git url: 'https://github.com/sherwoodzern/msdataworkshop'
         withMaven (
           maven: 'M3',
           mavenLocalRepo: '.repository',
           mavenSettingsConfig: 'global-settings-xml'
         )
+        sh 'cd frontend-helidon'
+        sh 'SCRIPT_DIR=$(dirname $0)'
+        sh 'IMAGE_NAME=frontend-helidon'
+        sh 'IMAGE_VERSION=0.1'
+        sh 'export IMAGE=${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}'
         sh "mvn -version"
         sh "mvn package docker:build"
       }
