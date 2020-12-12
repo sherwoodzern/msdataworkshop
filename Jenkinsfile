@@ -26,7 +26,7 @@ pipeline {
           mavenLocalRepo: '.repository',
           mavenSettingsConfig: 'global-settings-xml'
         )
-        sh "mvn install"
+        sh "mvn -version"
         sh "mvn package docker:build"
       }
     }
