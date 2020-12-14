@@ -14,8 +14,6 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        
-        git url: 'https://github.com/sherwoodzern/msdataworkshop'
         withMaven (
           maven: 'M3',
           mavenLocalRepo: '.repository',
@@ -26,7 +24,8 @@ pipeline {
             sh 'IMAGE_NAME=frontend-helidon'
             sh 'IMAGE_VERSION=0.1'
             sh 'export IMAGE=${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_VERSION}'
-            sh "mvn -version"
+            sh 'pwd'
+            sh 'ls -ltra'
             sh "mvn install"
             sh "mvn package docker:build"
         }
