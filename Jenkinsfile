@@ -27,7 +27,7 @@ pipeline {
               sh 'pwd'
               sh 'ls -ltra'
               sh "mvn install"
-              sh "mvn package docker:build"
+              sh "mvn package"
             }
           }
       }
